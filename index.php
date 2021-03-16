@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 
-<?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $db = "php-d13";
-
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully";
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
-?>
+<?php include 'conexion.php'; ?>
 
 <html lang="es">
 <head>
@@ -62,7 +48,17 @@
 
                 echo "<table border='1'>";
                 echo "<tr><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Correo</th><th>Comentarios</th><th>Género</th></tr>";
-                
+                foreach($stmt->FetchAll() as $miembro){
+                    echo 
+                    "<tr>
+                        <td>", $miembro['id'], "</td>
+                        <td>", $miembro['nombre'], "</td>
+                        <td>", $miembro['apellidos'], "</td>
+                        <td>", $miembro['correo'], "</td>
+                        <td>", $miembro['comentarios'], "</td>
+                        <td>", $miembro['genero'], "</td>
+                    <t/r>";
+                }
             ?>
 
         </form>
